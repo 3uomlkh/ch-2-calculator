@@ -5,7 +5,14 @@ import java.util.Scanner;
 public class Calculator {
     private static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        calculate();
+        while (true) {
+            calculate();
+            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
+            String input = sc.nextLine();
+            if (input.equals("exit")) {
+                break;
+            }
+        }
     }
 
     private static void calculate() {
