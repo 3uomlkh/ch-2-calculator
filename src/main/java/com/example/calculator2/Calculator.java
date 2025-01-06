@@ -6,6 +6,14 @@ import java.util.List;
 public class Calculator {
     private List<Integer> results = new ArrayList<>();
 
+    public List<Integer> getResult() {
+        return results;
+    }
+
+    public void setResult(List<Integer> result) {
+        results = result;
+    }
+
     private int add(int num1, int num2) {
         return num1 + num2;
     }
