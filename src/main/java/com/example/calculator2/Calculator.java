@@ -40,6 +40,10 @@ public class Calculator {
         results = result;
     }
 
+    public void removeResult() {
+        results.remove(0);
+    }
+
     private int add(int num1, int num2) {
         return num1 + num2;
     }
