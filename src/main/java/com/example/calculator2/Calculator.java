@@ -29,6 +29,7 @@ public class Calculator {
                 System.out.println("올바른 연산자를 입력하세요.");
         }
         results.add(result);
+
         return result;
     }
 
@@ -36,8 +37,8 @@ public class Calculator {
         return results;
     }
 
-    public void setResult(List<Integer> result) {
-        results = result;
+    public void setResult(int index, int num) {
+        results.set(index, num);
     }
 
     public void removeResult() {
