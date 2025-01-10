@@ -26,6 +26,7 @@ public class App {
                     break;
                 case "4":
                     searchBigger(calculator);
+                    break;
                 case "exit":
                     System.out.println("프로그램을 종료합니다.");
                     return;
@@ -74,6 +75,10 @@ public class App {
         double num = sc.nextDouble();
         sc.nextLine();
 
+        if(calculator.getResult().size() <= index) {
+            System.out.println("수정할 인덱스가 존재하지 않습니다. 최대 인덱스는 " + (calculator.getResult().size() - 1) + "입니다.");
+            return;
+        }
         calculator.setResult(index, num);
     }
 
