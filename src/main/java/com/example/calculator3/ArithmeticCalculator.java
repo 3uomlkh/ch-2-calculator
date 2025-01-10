@@ -2,10 +2,11 @@ package com.example.calculator3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.calculator3.OperatorType.*;
 
-public class ArithmeticCalculator<T> {
+public class ArithmeticCalculator<T extends Number & Comparable<T>> {
     private List<T> results = new ArrayList<>();
 
     public T calculate(T num1, T num2, char operator) {
@@ -50,6 +51,11 @@ public class ArithmeticCalculator<T> {
         results.remove(0);
     }
 
-    //저장된 연산 결과들 중 Scanner로 입력받은 값보다 큰 결과값 들을 출력 -> 조회 메서드 추가
+    public List<T> getBigger(T num) {
+        List<T> filteredList = results.stream()
+                .filter(n -> n.compareTo(num) > 0)
+                .collect(Collectors.toList());
+        return filteredList;
+    }
 
 }

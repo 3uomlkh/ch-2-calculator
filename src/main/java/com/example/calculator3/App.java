@@ -1,5 +1,6 @@
 package com.example.calculator3;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -24,6 +25,8 @@ public class App {
                     removeOldestResult(calculator);
                     printAllResult(calculator);
                     break;
+                case "4":
+                    searchBigger(calculator);
                 case "exit":
                     System.out.println("프로그램을 종료합니다.");
                     return;
@@ -34,7 +37,7 @@ public class App {
     }
 
     private static void printMenu() {
-        System.out.println("0. 계산하기  |  1. 모든 결과 보기  |  2. 오래된 결과 삭제  |  3. 결과 수정  |  4. 나가기(exit 입력)");
+        System.out.println("0. 계산하기  |  1. 모든 결과 조회  |  2. 오래된 결과 삭제  |  3. 결과 수정  |  4. 큰 값 조회  |  5.나가기(exit 입력)");
     }
 
     private static void printAllResult(ArithmeticCalculator<Double> calculator) {
@@ -62,6 +65,20 @@ public class App {
         System.out.print("수정 후 숫자를 입력하세요: ");
         double num = sc.nextDouble();
         sc.nextLine();
+
         calculator.setResult(index, num);
+    }
+
+    private static void searchBigger(ArithmeticCalculator<Double> calculator) {
+        System.out.print("비교할 값을 입력하세요: ");
+        double num = sc.nextDouble();
+
+        List<Double> filteredResults = calculator.getBigger(num);
+        if (filteredResults.isEmpty()) {
+            System.out.println("입력한 값보다 더 큰 값이 없습니다.");
+        } else  {
+            System.out.println("입력한 값보다 큰 값 : " + filteredResults);
+        }
+
     }
 }
