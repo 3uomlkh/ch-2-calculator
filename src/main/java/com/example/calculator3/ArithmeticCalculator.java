@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import static com.example.calculator3.OperatorType.*;
 
 public class ArithmeticCalculator<T extends Number & Comparable<T>> {
-    private List<T> results = new ArrayList<>();
+    private final List<T> results = new ArrayList<>();
 
     public T calculate(T num1, T num2, char operator) {
         double result = 0;
