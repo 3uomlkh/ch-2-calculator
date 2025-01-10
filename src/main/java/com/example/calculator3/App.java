@@ -18,11 +18,10 @@ public class App {
                     printAllResult(calculator);
                     break;
                 case "2":
-                    removeResult(calculator);
+                    removeOldestResult(calculator);
                     break;
                 case "3":
-                    removeOldestResult(calculator);
-                    printAllResult(calculator);
+                    editNumber(calculator);
                     break;
                 case "4":
                     searchBigger(calculator);
@@ -40,12 +39,14 @@ public class App {
         System.out.println("0. 계산하기  |  1. 모든 결과 조회  |  2. 오래된 결과 삭제  |  3. 결과 수정  |  4. 큰 값 조회  |  5.나가기(exit 입력)");
     }
 
+    // 모든 결과 조회
     private static void printAllResult(ArithmeticCalculator<Double> calculator) {
         System.out.println(calculator.getResult());
     }
 
-    private static void removeResult(ArithmeticCalculator<Double> calculator) {
-        if (calculator.getResult().isEmpty()) {
+    // 오래된 결과 삭제
+    private static void removeOldestResult(ArithmeticCalculator<Double> calculator) {
+        if (calculator.getResult().isEmpty()) { // 결과 리스트가 비어있는지 확인
             System.out.println("삭제할 값이 없습니다.");
             return;
         }
@@ -53,6 +54,7 @@ public class App {
         printAllResult(calculator);
     }
 
+    // 계산하기
     private static void calculate(ArithmeticCalculator<Double> calculator) {
         System.out.print("첫 번째 숫자를 입력하세요: ");
         double num1 = sc.nextDouble();
@@ -67,7 +69,8 @@ public class App {
         System.out.println("계산 결과: " + result);
     }
 
-    private static void removeOldestResult(ArithmeticCalculator<Double> calculator) {
+    // 결과 수정
+    private static void editNumber(ArithmeticCalculator<Double> calculator) {
         System.out.print("수정할 인덱스를 입력하세요: ");
         int index = sc.nextInt();
         sc.nextLine();
@@ -75,11 +78,12 @@ public class App {
         double num = sc.nextDouble();
         sc.nextLine();
 
-        if(calculator.getResult().size() <= index) {
+        if(calculator.getResult().size() <= index) { // 수정할 인덱스까지 결과가 존재하지 않을 경우
             System.out.println("수정할 인덱스가 존재하지 않습니다. 최대 인덱스는 " + (calculator.getResult().size() - 1) + "입니다.");
             return;
         }
         calculator.setResult(index, num);
+        printAllResult(calculator);
     }
 
     private static void searchBigger(ArithmeticCalculator<Double> calculator) {
@@ -87,11 +91,10 @@ public class App {
         double num = sc.nextDouble();
 
         List<Double> filteredResults = calculator.getBigger(num);
-        if (filteredResults.isEmpty()) {
+        if (filteredResults.isEmpty()) { // 더 큰 값이 없을 경우
             System.out.println("입력한 값보다 더 큰 값이 없습니다.");
         } else  {
             System.out.println("입력한 값보다 큰 값 : " + filteredResults);
         }
-
     }
 }

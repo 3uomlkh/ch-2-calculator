@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import static com.example.calculator3.OperatorType.*;
 
+// T를 Number로 제한, 비교가 가능하도록 제한
 public class ArithmeticCalculator<T extends Number & Comparable<T>> {
     private final List<T> results = new ArrayList<>();
 
@@ -28,6 +29,7 @@ public class ArithmeticCalculator<T extends Number & Comparable<T>> {
                 System.out.println("올바른 연산자를 입력하세요.");
         }
 
+        // 들어온 숫자의 데이터 타입에 따라 분기
         if (num1 instanceof Integer && num2 instanceof Integer) {
             T castedResult = (T) Integer.valueOf((int) result);
             results.add(castedResult);
@@ -51,9 +53,10 @@ public class ArithmeticCalculator<T extends Number & Comparable<T>> {
         results.remove(0);
     }
 
+    // 입력된 값보다 더 큰 값만 골라 조회
     public List<T> getBigger(T num) {
         List<T> filteredList = results.stream()
-                .filter(n -> n.compareTo(num) > 0)
+                .filter(n -> n.compareTo(num) > 0) // 객체 n이 입력값 num보다 큰 경우 필터링
                 .collect(Collectors.toList());
         return filteredList;
     }
