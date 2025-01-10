@@ -18,8 +18,7 @@ public class App {
                     printAllResult(calculator);
                     break;
                 case "2":
-                    calculator.removeResult();
-                    printAllResult(calculator);
+                    removeResult(calculator);
                     break;
                 case "3":
                     removeOldestResult(calculator);
@@ -42,6 +41,15 @@ public class App {
 
     private static void printAllResult(ArithmeticCalculator<Double> calculator) {
         System.out.println(calculator.getResult());
+    }
+
+    private static void removeResult(ArithmeticCalculator<Double> calculator) {
+        if (calculator.getResult().isEmpty()) {
+            System.out.println("삭제할 값이 없습니다.");
+            return;
+        }
+        calculator.removeResult();
+        printAllResult(calculator);
     }
 
     private static void calculate(ArithmeticCalculator<Double> calculator) {
